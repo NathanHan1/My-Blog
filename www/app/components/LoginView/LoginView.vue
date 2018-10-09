@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <div class="loginview">
-            <h2>请出示您的鱼人身份...</h2>
+            <h2>请出示您的渔人身份...</h2>
             <div class="close" @click="close"><i class="iconfont icon-guanbi"></i></div>
             <login class="login"></login>
         </div>

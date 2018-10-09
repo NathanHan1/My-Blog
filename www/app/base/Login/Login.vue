@@ -16,6 +16,8 @@
     </Form>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -45,13 +47,23 @@ export default {
         handleSubmit(name) {
             this.$refs[name].validate(valid => {
                 if (valid) {
-                    if (this.isSuccess) {
-                        this.$Message.success('欢迎来到渔人码头！');
-                        this.$store.commit('LOGINVIEW',false);
-                        this.$store.commit('LOGING',true);
-                    } else {
-                        this.$Message.error('您的身份是假的')
-                    }
+                    axios({
+                        method: 'post',
+                        url: '/account',
+                        headers: { 'Content-type': 'application/json' },
+                        data: {
+                            user: this.formInline.user,
+                            password: this.formInline.password
+                        }
+                    }).then(data => {
+                        if (data.data === 'ok') {
+                            this.$Message.success('欢迎来到渔人码头！');
+                            this.$store.commit('LOGINVIEW', false);
+                            this.$store.commit('LOGING', true);
+                        } else {
+                            this.$Message.error('您的身份是假的');
+                        }
+                    });
                 } else {
                     this.$Message.error('账号密码输对了吗？');
                 }

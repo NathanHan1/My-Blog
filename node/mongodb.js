@@ -17,7 +17,17 @@ const articleSchema = mongoose.Schema(
     { collection: 'article' }
 );
 
-const Article = mongoose.model('article', articleSchema, 'article');
+const accountSchema = mongoose.Schema(
+    {
+        user: String,
+        password: Number
+    },
+    { collection: 'account' }
+);
 
-module.exports = Article
+const Model = {
+    article : mongoose.model('article', articleSchema, 'article'),
+    account: mongoose.model('account', accountSchema, 'account')
+};
 
+module.exports = Model;
