@@ -40,13 +40,14 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .articleContent {
     .footer-article {
         position: absolute;
         bottom: 0;
         left: 0;
     }
+    font-size: 18px;
     background: #ccc;
     min-height: 1400px;
     width: 100%;
@@ -59,7 +60,7 @@ export default {
         background: #fff;
         min-height: 1240px;
         position: relative;
-        width: 1000px;
+        width: 900px;
         margin: 0 auto;
         .titleWrap {
             overflow: hidden;
@@ -100,7 +101,7 @@ export default {
         .content {
             width: 100%;
             height: calc(100% - 400px);
-            padding: 70px 120px;
+            padding: 70px 100px;
             h1 {
                 margin: 30px 0;
             }

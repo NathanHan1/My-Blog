@@ -82,28 +82,17 @@ export default {
             .linkLogo {
                 .icon-weixin {
                     &:hover {
-                        color: #80bd01;
-                    }
-                }
-                .icon-zhihu {
-                    &:hover {
-                        color: #0143bd;
-                    }
-                }
-                .icon-weibo {
-                    &:hover {
-                        color: orange;
-                    }
-                }
-                .icon-githup {
-                    &:hover {
-                        color: #109fca;
+                        color: rgb(30, 255, 49);
                     }
                 }
                 i {
+                    margin: 5px;
                     transition: 0.2s;
                     font-size: 50px;
                     color: white;
+                    &:hover {
+                        color: rgb(62, 160, 240);
+                    }
                 }
             }
         }

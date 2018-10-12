@@ -1,24 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-
-import Home1 from '../components/Home/Home.vue'
-import Article1 from '../components/Article/Article.vue'
-import Resume1 from '../components/Resume/Resume.vue'
-import Movies1 from '../components/Movies/Movies.vue'
-import Production1 from '../components/Production/Production.vue'
-import ArticleContent1 from '../components/ArticleContent/ArticleContent.vue'
-import Edit1 from '../components/Edit/Edit.vue'
-
 Vue.use(Router);
-
-const Home = () => Promise.resolve(Home1)
-const Article = () => Promise.resolve(Article1)
-const Production = () => Promise.resolve(Production1)
-const Movies = () => Promise.resolve(Movies1)
-const Resume = () => Promise.resolve(Resume1)
-const ArticleContent = () => Promise.resolve(ArticleContent1)
-const Edit = () => Promise.resolve(Edit1)
 
 export default new Router({
     routes: [
@@ -28,33 +11,47 @@ export default new Router({
         },
         {
             path: '/home',
-            component: Home
+            component(){
+                return import('../components/Home/Home.vue')
+            },
         },
         {
             path: '/article',
-            component: Article,
+            component(){
+                return import('../components/Article/Article.vue')
+            },
             children:[
                 {
                     path:':time',
-                    component:ArticleContent
+                    component(){
+                        return import('../components/ArticleContent/ArticleContent.vue')
+                    }
                 }
             ]
         },
         {
             path: '/movies',
-            component: Movies
+            component(){
+                return import('../components/Movies/Movies.vue')
+            }
         },
         {
             path: '/production',
-            component: Production
+            component(){
+                return import('../components/Production/Production.vue')
+            }
         },
         {
             path: '/resume',
-            component: Resume
+            component(){
+                return import('../components/Resume/Resume.vue')
+            }
         },
         {
             path: '/edit',
-            component: Edit
+            component(){
+                return import('../components/Edit/Edit.vue')
+            }
         }
     ]
 });

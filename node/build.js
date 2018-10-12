@@ -5,6 +5,8 @@ var formidable = require('formidable');
 
 app.use(express.static('../www'));
 
+app.use(express.static('../www/dist'));
+
 app.listen(7900, function(err) {
     console.log('成功');
 });

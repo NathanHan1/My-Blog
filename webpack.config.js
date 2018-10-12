@@ -39,10 +39,14 @@ module.exports = {
                 loader: 'vue-loader'
             },
             {
-                test: /\.css$/, //解析的时候匹配到的都是js文件
-                // include: [path.resolve(__dirname, 'www/app')], //翻译什么文件夹中的文件
-                // exclude: [path.resolve(__dirname, 'node_modules')], //不翻译什么文件夹
+                test: /\.css$/,
+                exclude: /node_modules/,
                 use: ['vue-style-loader', 'css-loader']
+            },
+            {
+                test: /\.css$/,
+                include: /node_modules/,
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.less$/,
@@ -54,7 +58,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 100000
+                            limit: 1000000
                         }
                     }
                 ]

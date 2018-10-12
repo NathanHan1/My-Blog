@@ -16,6 +16,9 @@
                 <a href="https://www.zhihu.com/people/zi-you-yu-ren-7/answers" target="_blank">
                     <i class="iconfont   icon-zhihu"></i>
                 </a>
+                <Tooltip content="WeChat: 354172676">
+                    <i class="iconfont icon-weixin"></i>
+                </Tooltip>
             </div>
         </div>
     </div>
@@ -32,7 +35,7 @@ export default {};
     background: #222;
     color: #777;
     box-sizing: border-box;
-    padding:60px 40px 0 70px;
+    padding: 60px 40px 0 70px;
     .text {
         width: 500px;
         float: left;
@@ -49,20 +52,25 @@ export default {};
     .icon {
         float: right;
         width: 400px;
-        h2{
+        h2 {
             font-size: 22px;
             margin: 10px;
             color: #ccc;
         }
-        .iconfont{
+        .iconfont {
             margin-top: 30px;
             font-size: 40px;
-            i{
+            i {
                 margin: 5px;
                 color: #555;
-                transition: .2s;
-                &:hover{
-                    color: rgb(62, 160, 240)
+                transition: 0.2s;
+                &:hover {
+                    color: rgb(62, 160, 240);
+                }
+            }
+            .icon-weixin {
+                &:hover {
+                    color: rgb(30, 255, 49);
                 }
             }
         }

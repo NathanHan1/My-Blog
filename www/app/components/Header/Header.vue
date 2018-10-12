@@ -173,6 +173,17 @@ export default {
             .active {
                 color: #57c3e0;
                 text-shadow: 0 0 20px #666;
+                position: relative;
+                &::after{
+                    content: '';
+                    display: block;
+                    width: 53px;
+                    height: 2px;
+                    background: #57c3e0;
+                    position: absolute;
+                    bottom: -10px;
+                    left: -9px;
+                }
             }
         }
     }

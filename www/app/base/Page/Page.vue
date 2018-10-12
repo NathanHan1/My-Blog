@@ -1,6 +1,11 @@
 <template>
     <div>
-        <Page @on-change="setpage" :total="total" :page-size="5" :styles="settings"/>
+        <Page 
+            @on-change="setpage" 
+            :current="$store.state.currentArticlePage"
+            :total="total" :page-size="5" 
+            :styles="settings"
+        />
     </div>
 </template>
 

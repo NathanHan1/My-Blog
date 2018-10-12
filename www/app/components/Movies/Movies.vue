@@ -12,6 +12,6 @@ export default {
 <style lang="less" scoped>
 div {
     height: 1000px;
-    background: skyblue;
+    background: #ccc;
 }
 </style>

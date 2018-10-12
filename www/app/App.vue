@@ -28,6 +28,7 @@ export default {
     created() {
         if (localStorage.getItem('userMsg')) {
             this.$store.replaceState(JSON.parse(localStorage.getItem('userMsg')));
+            this.$store.commit('LOGING', false);
             this.$router.push(`/${this.$store.state.view}`);
         }
         window.addEventListener('beforeunload', () => {
@@ -38,6 +39,9 @@ export default {
 </script>
 
 <style lang="less">
+body{
+    font-size: 18px;
+}
 .slide-enter-active {
     transition: all 1.2s;
 }
@@ -60,10 +64,10 @@ export default {
     opacity: 0;
 }
 
-a.ivu-modal-close{
-    transition: .7s;
-    &:hover{
-        transform: rotateZ(180deg)
+a.ivu-modal-close {
+    transition: 0.7s;
+    &:hover {
+        transform: rotateZ(180deg);
     }
 }
 </style>

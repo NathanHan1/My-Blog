@@ -146,17 +146,19 @@ export default {
     width: 100%;
     background: rgb(177, 211, 219);
     padding-top: 100px;
+    font-size: 18px;
     .wrap {
         width: 900px;
         margin: 0 auto;
         .editorHeader {
             background: #333;
+            z-index: 700 !important;
         }
         .editorContent {
             border: 1px solid #333;
             height: 500px;
             background: #fff;
-            z-index: 800 !important;
+            z-index: 700 !important;
         }
         .imgSrc {
             width: 600px;
@@ -192,5 +194,12 @@ export default {
             }
         }
     }
+}
+</style>
+
+// 解决iview和wangeditor冲突
+<style>
+.w-e-menu {
+    z-index: 701 !important;
 }
 </style>

@@ -31,7 +31,7 @@
                                     </div>
                             </transition>
                             <div class="image">
-                                <img :src="item.img" height="169px" alt="">
+                                <img v-lazy="item.img" height="169px" alt="">
                             </div>
                             <div class="line"></div>
                         </li>
@@ -60,8 +60,10 @@ import axios from 'axios';
 export default {
     created() {
         this.$store.dispatch('GET_ARTICLE').then(() => {
-            // this.$Loading.finish();
+            this.blogs = this.deepClone(this._blogs);
+            console.log('hehe');
         });
+        console.log('haha');
     },
     data() {
         return {
@@ -189,10 +191,11 @@ export default {
         margin: 0 auto;
         height: 1250px;
         position: relative;
-        padding: 30px 60px 50px 60px;
+        padding: 10px 60px 50px 60px;
         h1 {
             font-size: 36px;
-            margin-bottom: 60px;
+            margin-top: 15px;
+            margin-bottom: 45px;
             color: #aaa;
         }
         ul {
@@ -276,7 +279,7 @@ export default {
                 .oparating {
                     position: absolute;
                     right: 10px;
-                    bottom: 4px;
+                    bottom: 0px;
                     .icon-shanchu {
                         transition: 0.5s;
                         font-size: 22px;
