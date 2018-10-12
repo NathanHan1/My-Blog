@@ -26,13 +26,6 @@ export default {
         this.$refs.content.innerHTML = this.blog.content;
         this.$refs.bg.style.backgroundImage = `url(${this.blog.img})`;
     },
-    created(){
-        console.log('????');
-        
-    },
-    activated(){
-        console.log("!!!!!!");
-    },
     components: {
         MFooter,
         Back
