@@ -19,6 +19,9 @@ const mutations = {
     },
     EDIT_TIME(state, time) {
         state.currentArticleTime = time;
+    },
+    EDIT_IMG(state, img) {
+        state.currentArticleImg = img;
     }
 };
 

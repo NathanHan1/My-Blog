@@ -3,7 +3,7 @@
         <div class="wrapArticle">
             <h1 class="title">这里记录了技术的成长...</h1>
             <transition name="write">
-                <div class="write" @click="linkToEdit" v-if="$store.state.login">
+                <div class="write" @click="linkToAdd" v-if="$store.state.login">
                     <i class="iconfont icon-zengjiatianjiamianxing"></i>
                 </div>
             </transition>
@@ -23,7 +23,7 @@
                                         <i @click="up(index)" class="iconfont icon-up"></i>
                                         <i @click="down(index)" class="iconfont icon-down"></i>
                                         <i class="iconfont icon-bianji"
-                                            @click="linkToEdit(item.content,item.time)"
+                                            @click="linkToEdit(item)"
                                         ></i>
                                         <i class="iconfont icon-shanchu" 
                                             @click="isRemove(item.time)"
@@ -97,14 +97,18 @@ export default {
             this.blog = item;
             window.scrollTo(0, 0);
         },
-        linkToEdit(content, time) {
-            if (typeof content === 'string') {
-                this.$store.commit('SET_VIEW', 'edit');
-                this.$store.commit('EDITARTICLE', content);
-                this.$store.commit('EDIT_TIME', time);
-            } else if (typeof content === 'object') {
-                this.$store.commit('SET_VIEW', 'add');
-            }
+        linkToEdit({ content, time, img }) {
+            this.$store.commit('SET_VIEW', 'edit');
+            this.$store.commit('EDITARTICLE', content);
+            this.$store.commit('EDIT_TIME', time);
+            this.$store.commit('EDIT_IMG', img);
+            this.$router.push({
+                path: '/edit'
+            });
+            window.scrollTo(0, 0);
+        },
+        linkToAdd() {
+            this.$store.commit('SET_VIEW', 'add');
             this.$router.push({
                 path: '/edit'
             });

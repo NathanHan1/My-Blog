@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <section class="introduction">
-            <img src="/app/components/Home/banner1.jpg" 
+            <img v-lazy="imgUrl"
             oncontextmenu="return false;" 
             onselectstart="return false;"
             draggable="false"
@@ -49,6 +49,11 @@
 
 <script>
 export default {
+    data(){
+        return {
+            imgUrl:"/app/components/Home/banner1.jpg"
+        }
+    },
     created() {
         this.$Loading.finish();
     }

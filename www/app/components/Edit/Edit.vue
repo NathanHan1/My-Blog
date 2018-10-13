@@ -7,7 +7,11 @@
             <div class="imgSrc">
                 <i @click="showImgSrc" class="iconfont icon-tupian"></i>
                 <transition name="imgSrcSlide">
-                    <Input class="iptImg" v-show="imgSrc" v-model="img" placeholder="请添加图片地址..." />
+                    <Input class="iptImg" 
+                        v-show="imgSrc" 
+                        v-model="img" 
+                        placeholder="请添加图片地址..." 
+                    />
                 </transition>
             </div>
             <div class="btnWrap">
@@ -36,10 +40,14 @@ export default {
         return {
             editor: null,
             JSON: {},
-            img: 'https://goss.vcg.com/creative/vcg/800/version23/VCG21gic19582777.jpg',
             imgSrc: false,
-            modal: false
+            modal: false,
+            img: this.$store.state.currentArticleImg
         };
+    },
+    created(){
+        console.log(this.$store.state.currentArticleImg);
+        
     },
     mounted() {
         this.editor = new E(this.$refs.editor1, this.$refs.editor2);

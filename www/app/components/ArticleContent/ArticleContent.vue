@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .articleContent {
     .footer-article {
         position: absolute;
@@ -94,7 +94,8 @@ export default {
         .content {
             width: 100%;
             height: calc(100% - 400px);
-            padding: 70px 100px;
+            padding: 30px 100px;
+            line-height: 32px;
             h1 {
                 margin: 30px 0;
             }
