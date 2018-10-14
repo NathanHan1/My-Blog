@@ -54,9 +54,10 @@ export default {
         //为了填补iview的坑，只能动态设置header的位置。
         this.$refs.wrap.style.left = document.body.clientWidth / 2 - 550 + 'px';
     },
-    methods: {  
+    methods: {
         toHome() {
             this.$store.commit('SET_VIEW', 'home');
+            window.scrollTo(0, 0);
             // this.$Loading.start();
         },
         toArticle() {
@@ -174,7 +175,7 @@ export default {
                 color: #57c3e0;
                 text-shadow: 0 0 20px #666;
                 position: relative;
-                &::after{
+                &::after {
                     content: '';
                     display: block;
                     width: 53px;

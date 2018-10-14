@@ -5,23 +5,34 @@
             oncontextmenu="return false;" 
             onselectstart="return false;"
             draggable="false"
-            width="100%" alt="" />
+            width="100%" alt=""
+            />
             <div class="info">
-                <h2>你好！</h2>
+                <transition name="title-slide">
+                    <div v-show="infoShow">
+                        <h2>你好！</h2>
+                        <br>
+                        <h1>我是 <strong>自由渔人</strong></h1>
+                    </div>
+                </transition>
                 <br>
-                <h1>我是 <strong>自由渔人</strong></h1>
+                <transition name="content-slide">
+                    <div v-show="infoShow">
+                        <p>95后前端工程师</p>
+                        <p>为了消灭代码世界的臭虫<br>愿望是成为一名昆虫学博士（狗头）</p>
+                    </div>
+                </transition>
                 <br>
-                <p>95后前端工程师</p>
-                <p>为了消灭代码世界的臭虫<br>愿望是成为一名昆虫学博士（狗头）</p>
-                <br>
-                <div class="linkLogo">
-                    <a href="http://hanzhibang.cn" target="_blank"><i class="iconfont icon-githup"></i></a>
-                    <a href="https://weibo.com/1810415550/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1"     target="_blank"><i class="iconfont icon-weibo"></i></a>
-                    <a href="https://www.zhihu.com/people/zi-you-yu-ren-7/answers" target="_blank"><i class="iconfont   icon-zhihu"></i></a>
-                    <Tooltip content="WeChat: 354172676">
-                        <i class="iconfont icon-weixin"></i>
-                    </Tooltip>
-                </div>
+                <transition name="logo-slide">
+                    <div class="linkLogo"  v-show="infoShow">
+                        <a href="http://hanzhibang.cn" target="_blank"><i class="iconfont icon-githup"></i></a>
+                        <a href="https://weibo.com/1810415550/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1"         target="_blank"><i class="iconfont icon-weibo"></i></a>
+                        <a href="https://www.zhihu.com/people/zi-you-yu-ren-7/answers" target="_blank"><i   class="iconfont   icon-zhihu"></i></a>
+                        <Tooltip content="WeChat: 354172676">
+                            <i class="iconfont icon-weixin"></i>
+                        </Tooltip>
+                    </div>
+                </transition>
             </div>
         </section>
         <section class="server">
@@ -49,14 +60,26 @@
 
 <script>
 export default {
-    data(){
+    data() {
         return {
-            imgUrl:"/app/components/Home/banner1.jpg"
-        }
+            imgUrl: '/app/components/Home/banner1.jpg',
+            infoShow: false
+        };
     },
     created() {
         this.$Loading.finish();
-    }
+        const _this = this;
+        this.$Lazyload.$once('loaded', function() {
+            _this.infoShow = true;
+            console.log(1);
+        });
+    },
+    deactivated(){
+        this.infoShow = false
+    },
+    activated(){
+        this.infoShow = true
+    },
 };
 </script>
 
@@ -66,6 +89,32 @@ export default {
     .introduction {
         padding-top: 65px;
         .info {
+            .title-slide-enter-active,
+            .title-slide-leave-active {
+                transition: all 1s;
+            }
+            .title-slide-enter,
+            .title-slide-leave-to {
+                transform: translateX(-300px);
+            }
+
+            .content-slide-enter-active,
+            .content-slide-leave-active {
+                transition: all 1s;
+            }
+            .content-slide-enter,
+            .content-slide-leave-to {
+                transform: translateX(300px);
+            }
+
+            .logo-slide-enter-active,
+            .logo-slide-leave-active {
+                transition: all 1s;
+            }
+            .logo-slide-enter,
+            .logo-slide-leave-to {
+                transform: translateY(300px);
+            }
             position: absolute;
             left: 70px;
             top: 150px;
@@ -76,6 +125,7 @@ export default {
             h1 {
                 font-size: 32px;
                 strong {
+                    color: #1fb8e2;
                     font-size: 38px;
                     font-weight: bold;
                 }
