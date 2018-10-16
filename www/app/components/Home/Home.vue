@@ -37,22 +37,30 @@
         </section>
         <section class="server">
             <div class="serverWrap">
-                <div class="nodejs">
-                    <img src="/app/components/Home/nodejs1.jpg" width="150px" alt="">
-                    <p>NODEJS强力驱动</p>
-                </div>
+                <transition name="nodejs-slide">
+                    <div class="nodejs" v-show="serverShow">
+                        <img src="/app/components/Home/nodejs1.jpg" width="150px" alt="">
+                        <p>NODEJS强力驱动</p>
+                    </div>
+                </transition>
                 <h1>与</h1>
-                <div class="mongodb">
-                    <img src="/app/components/Home/mongodb.jpg" width="150px" alt="">
-                    <p>MongoDB高效读写</p>
-                </div>
+                <transition name="mongodb-slide">
+                    <div class="mongodb" v-show="serverShow">
+                        <img src="/app/components/Home/mongodb.jpg" width="150px" alt="">
+                        <p>MongoDB高效读写</p>
+                    </div>
+                </transition>
             </div>
             <p></p>
         </section>
         <section class="browser">
             <div class="browserWrap">
-                <img src="/app/components/Home/vue.png" width="150px" alt="">
-                <p>基于VueJS + Vuex + Vue-Router + iView + 富文本编辑器的 <span style="color: #ccc;font-weight:bold">单页面应用</span></p>
+                <transition name="vue-slide">
+                    <img v-show="browserShow" src="/app/components/Home/vue.png" width="150px" alt="">
+                </transition>
+                <transition name="vueInfo-slide">
+                    <p v-show="browserShow">基于VueJS + Vuex + Vue-Router + iView + 富文本编辑器的 <span style="color: #ccc;font-weight:bold">单页面应用</span></p>
+                </transition>
             </div>
         </section>
     </div>
@@ -63,7 +71,10 @@ export default {
     data() {
         return {
             imgUrl: '/app/components/Home/banner1.jpg',
-            infoShow: false
+            infoShow: false,
+            serverShow: false,
+            browserShow: false,
+            firstLoaded: false
         };
     },
     created() {
@@ -71,15 +82,25 @@ export default {
         const _this = this;
         this.$Lazyload.$once('loaded', function() {
             _this.infoShow = true;
-            console.log(1);
+            _this.firstLoaded = true;
+        });
+        document.addEventListener('scroll', function() {
+            if (window.scrollY >= 400) {
+                _this.serverShow = true;
+            }
+            if (window.scrollY >= 1000) {
+                _this.browserShow = true;
+            }
         });
     },
-    deactivated(){
-        this.infoShow = false
+    deactivated() {
+        this.infoShow = false;
+        this.browserShow = false;
+        this.serverShow = false;
     },
-    activated(){
-        this.infoShow = true
-    },
+    activated() {
+        this.infoShow = this.firstLoaded && true;
+    }
 };
 </script>
 
@@ -156,15 +177,25 @@ export default {
         width: 100%;
         height: 500px;
         position: relative;
+
         .serverWrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 850px;
-            height: 230px;
-            margin: auto;
+            .nodejs-slide-enter-active,
+            .nodejs-slide-leave-active {
+                transition: all 1s;
+            }
+            .nodejs-slide-enter,
+            .nodejs-slide-leave-to {
+                transform: translateX(-300px);
+            }
+
+            .mongodb-slide-enter-active,
+            .mongodb-slide-leave-active {
+                transition: all 1s;
+            }
+            .mongodb-slide-enter,
+            .mongodb-slide-leave-to {
+                transform: translateX(300px);
+            }
             p {
                 color: #80bd01;
                 font-size: 42px;
@@ -173,8 +204,9 @@ export default {
                 text-align: center;
                 height: 230px;
                 width: 370px;
-                float: left;
-                position: relative;
+                position: absolute;
+                left: 150px;
+                top: 145px;
                 p {
                     position: absolute;
                     bottom: 10px;
@@ -182,19 +214,23 @@ export default {
                 }
             }
             h1 {
-                margin: 10px;
-                float: left;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
             .mongodb {
                 width: 390px;
                 text-align: center;
                 height: 230px;
-                float: left;
-                p {
-                    position: absolute;
-                    bottom: 10px;
-                    right: 40px;
-                }
+                position: absolute;
+                right: 150px;
+                top: 130px;
+                // p {
+                //     position: absolute;
+                //     bottom: 10px;
+                //     right: 40px;
+                // }
             }
         }
     }
@@ -204,22 +240,39 @@ export default {
         background: rgb(56, 57, 59);
         position: relative;
         .browserWrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            width: 700px;
-            height: 350px;
             font-size: 40px;
             text-align: center;
             line-height: 40px;
+            .vue-slide-enter-active,
+            .vue-slide-leave-active {
+                transition: all 1s;
+            }
+            .vue-slide-enter,
+            .vue-slide-leave-to {
+                transform: translateY(-200px);
+            }
+
+            .vueInfo-slide-enter-active,
+            .vueInfo-slide-leave-active {
+                transition: all 1s;
+            }
+            .vueInfo-slide-enter,
+            .vueInfo-slide-leave-to {
+                transform: translateY(200px);
+            }
+            img {
+                position: absolute;
+                top: 100px;
+                left: 50%;
+                margin-left: -75px;
+            }
             p {
                 color: #aaa;
                 position: absolute;
-                bottom: 10px;
-                left: 0;
+                bottom: 120px;
+                width: 700px;
+                left: 50%;
+                margin-left: -350px;
             }
         }
     }

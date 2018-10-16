@@ -60,10 +60,8 @@ import axios from 'axios';
 export default {
     created() {
         this.$store.dispatch('GET_ARTICLE').then(() => {
-            this.blogs = this.deepClone(this._blogs);
-            console.log('hehe');
+            // this.blogs = this.deepClone(this._blogs);
         });
-        console.log('haha');
     },
     data() {
         return {
